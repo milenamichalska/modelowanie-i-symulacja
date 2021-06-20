@@ -1,5 +1,4 @@
 #symulator lotu rakiety modelarskiej
-import math
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -20,7 +19,7 @@ parachute_deployment_delay = 3 #s
 #wyliczenia i zmienne poczatkowe
 burn_time = float(motor_impulse / motor_thrust)
 mass_decrement = propellant_mass / burn_time #predkosc spalania paliwa
-rocket_area = math.pi * (rocket_diameter / 2)**2
+rocket_area = np.pi * (rocket_diameter / 2)**2
 
 mass = empty_rocket_mass + propellant_mass
 rho = 1.22 #gestosc powietrza
@@ -42,7 +41,7 @@ for t in np.arange(0, time, time_interval):
         mass -= mass_decrement * time_interval #rakieta zmniejsza masę podczas spalania paliwa
 
     if (t >= burn_time + parachute_deployment_delay):
-        rocket_area = math.pi * (parachute_diameter / 2)**2 #po rozłożeniu spadochronu 'powierzchnia' rakiety zwieksza sie
+        rocket_area = np.pi * (parachute_diameter / 2)**2 #po rozłożeniu spadochronu 'powierzchnia' rakiety zwieksza sie
     
     if (v0 != 0): drag_force = 0.5 * rho * drag_coefficent * rocket_area * v0**2 * (v0 / abs(v0))  #sila oporu powietrza
     else: drag_force = 0
